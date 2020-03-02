@@ -3,6 +3,8 @@ package day1
 import java.util.Calendar.HOUR_OF_DAY
 
 object Main extends App {
+
+  //Hello World, Assignment, Parameters, Return Types
   // : String not needed
   var helloMsg: String = "Hello World"
   val name = "Gavin"
@@ -13,6 +15,21 @@ object Main extends App {
 
   def returnMe(returnObject: Any) = {
     returnObject
+  }
+
+  //Strings
+  strings("hello", 3)
+  def strings(string: String, number: Int) = {
+    string.splitAt(string.length-number)._2
+  }
+
+  //Strings 2
+
+  println(strings2("ha","llo","a","e"))
+  def strings2(string1: String,string2: String,toReplace: String,replaceWith: String) = {
+    val edited1 = string1.replace(toReplace, replaceWith)
+    val edited2 = string2.replace(toReplace, replaceWith)
+    edited1+edited2
   }
 
   def sayHello(name: Option[String] = null) {
