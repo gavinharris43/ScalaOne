@@ -49,23 +49,23 @@ object Main extends App {
   }
 
   //iteration
-  println(iterate("hi",3))
+  iterate("hi",3)
 
   def iterate(word: String, number: Int): Unit ={
-    for (number <- number until 0 by -1) {
+    for (i <- number until 0 by -1) {
       println(word)
     }
   }
 
-  //iteration
-  println(iterateSq("H",4))
+  //iteration 2
+  iterateSq("H",4)
 
   def iterateSq(word: String, number: Int): Unit ={
     for (i <- number until 0 by -1) {
-      println(
       for (i <- number until 0 by -1) {
       print(word)
-    })
+    }
+      println("")
     }
   }
 
