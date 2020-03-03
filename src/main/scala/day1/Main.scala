@@ -19,17 +19,54 @@ object Main extends App {
 
   //Strings
   strings("hello", 3)
+
   def strings(string: String, number: Int) = {
-    string.splitAt(string.length-number)._2
+    string.splitAt(string.length - number)._2
   }
 
   //Strings 2
 
-  println(strings2("ha","llo","a","e"))
-  def strings2(string1: String,string2: String,toReplace: String,replaceWith: String) = {
+  println(strings2("ha", "llo", "a", "e"))
+
+  def strings2(string1: String, string2: String, toReplace: String, replaceWith: String) = {
     val edited1 = string1.replace(toReplace, replaceWith)
     val edited2 = string2.replace(toReplace, replaceWith)
-    edited1+edited2
+    edited1 + edited2
+  }
+
+  //Operators / Conditionals
+  println(sumOf(0, 6, false))
+
+  def sumOf(num1: Int, num2: Int, add: Boolean) = {
+
+    if (add || num1== 0 || num2 == 0) {
+      num1 + num2
+    }
+    else {
+      num1 * num2
+    }
+
+  }
+
+  //iteration
+  println(iterate("hi",3))
+
+  def iterate(word: String, number: Int): Unit ={
+    for (number <- number until 0 by -1) {
+      println(word)
+    }
+  }
+
+  //iteration
+  println(iterateSq("H",4))
+
+  def iterateSq(word: String, number: Int): Unit ={
+    for (i <- number until 0 by -1) {
+      println(
+      for (i <- number until 0 by -1) {
+      print(word)
+    })
+    }
   }
 
   def sayHello(name: Option[String] = null) {
