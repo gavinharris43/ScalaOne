@@ -7,7 +7,7 @@ abstract class Vehicle(plateNo: String, vehicleOwner: Person) {
   val numberPlate: String = plateNo.toUpperCase()
   val owner: Person = vehicleOwner
   val vehicleType: Class[_ <: Vehicle] = this.getClass
-  var parts: List[Part]
+  val parts: List[Part]
 
   def brokenParts: IterableOnce[Part] with Equals with Serializable = {
     if (parts.exists(part => part broken)) {

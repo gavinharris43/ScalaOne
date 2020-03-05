@@ -10,18 +10,18 @@ class Garage {
 
   val vehicleList :ArrayBuffer[Vehicle] = ArrayBuffer.empty
   val personList :ArrayBuffer[Person] = ArrayBuffer.empty
-  var open :Boolean = false
+  private var isOpen: Boolean = false
 
 
-  def openGarage(): Unit = {
-    open=true
+  def open()= {
+    isOpen=true
   }
 
-  def closeGarage(): Unit = {
-    open=false
+  def close() = {
+    isOpen=false
   }
 
-  def addVehicle(vehicle: Vehicle): Unit = {
+  def addVehicle(vehicle: Vehicle) = {
     vehicleList.append(vehicle)
   }
 
@@ -37,7 +37,7 @@ class Garage {
     val fixedVehicle =vehicleList.find(vehicle=> vehicle.numberPlate==reg).getOrElse(None)
     //fixedVehicle.
   }
-  def contentsOfGarage ={
+  def contentsVehicles ={
     vehicleList
   }
 

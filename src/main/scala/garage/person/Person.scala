@@ -1,8 +1,8 @@
 package garage.person
 
 abstract  class Person(fullName: String, contactNo:String) {
-  var name: String = fullName
-  var phoneNumber: String = contactNo
+  val name: String = fullName
+  val phoneNumber: String = contactNo
 
 
   override def toString ={
