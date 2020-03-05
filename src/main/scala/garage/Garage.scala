@@ -10,15 +10,14 @@ class Garage {
 
   val vehicleList :ArrayBuffer[Vehicle] = ArrayBuffer.empty
   val personList :ArrayBuffer[Person] = ArrayBuffer.empty
-  private var isOpen: Boolean = false
-
+  val isOpen = new IsOpen(false)
 
   def open()= {
-    isOpen=true
+    isOpen.open=true
   }
 
   def close() = {
-    isOpen=false
+    isOpen.open=false
   }
 
   def addVehicle(vehicle: Vehicle) = {
