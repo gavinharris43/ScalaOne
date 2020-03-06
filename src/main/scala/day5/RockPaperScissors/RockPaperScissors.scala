@@ -2,9 +2,9 @@ package day5.RockPaperScissors
 
 import day5.RockPaperScissors.RPSEnum.RPSEnum
 import day5.RockPaperScissors.RPSWinEnum.RPSWinEnum
+import day5.RockPaperScissors.UserInput.userInputChar
 
 import scala.collection.mutable.ArrayBuffer
-import scala.io.StdIn
 import scala.util.Random
 
 class RockPaperScissors(playerName: String) {
@@ -29,7 +29,7 @@ class RockPaperScissors(playerName: String) {
 
   def playAgain: Boolean = {
     println("Play Again Y/N")
-    val input = userInput
+    val input = userInputChar
     input match {
       case 'Y' => true
       case 'N' => false
@@ -39,7 +39,7 @@ class RockPaperScissors(playerName: String) {
 
   def userGuess: RPSEnum = {
     println("Rock, Paper, Scissors?")
-    val input = userInput
+    val input = userInputChar
     input match {
       case 'R' => RPSEnum.rock
       case 'P' => RPSEnum.paper
@@ -48,14 +48,6 @@ class RockPaperScissors(playerName: String) {
     }
   }
 
-  def userInput: Char = {
-    try {
-      StdIn.readLine().toUpperCase().charAt(0)
-    }catch{
-      case e: StringIndexOutOfBoundsException => println("invalid input try again")
-        userInput
-    }
-  }
 
   def userWon(user: RPSEnum) = {
     val ai: RPSEnum = aiGuess
