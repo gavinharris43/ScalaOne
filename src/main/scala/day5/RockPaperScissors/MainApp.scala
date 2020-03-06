@@ -8,7 +8,7 @@ object MainApp extends App {
   println("Enter Name")
   val rockPaperScissors = new RockPaperScissors(userInputString)
 
-  rockPaperScissors.RockPaperScissors
+  rockPaperScissors.run
 
 
 }

@@ -3,28 +3,29 @@ package day5.RockPaperScissors
 import day5.RockPaperScissors.RPSEnum.RPSEnum
 import day5.RockPaperScissors.RPSWinEnum.RPSWinEnum
 import day5.RockPaperScissors.UserInput.userInputChar
+import scala.util.{Try, Success, Failure, Random}
+
 
 import scala.collection.mutable.ArrayBuffer
-import scala.util.Random
 
 class RockPaperScissors(playerName: String) {
   val name = playerName.toUpperCase
   val previousPlayerGuesses = ArrayBuffer[RPSEnum]()
   val userStats = ArrayBuffer[RPSWinEnum]()
+  val stats = s"$name Your Win Percentage is:"
 
-  def RockPaperScissors: Unit = {
-    println(s"$name Your Win Percentage is $winStats")
-    try {
-      wonOutput(userWon(userGuess))
-    } catch {
-      case e: IllegalArgumentException =>
-        println(s"IllegalStateException $e:  Application Restarting")
-        RockPaperScissors
-
+  def run: Unit = {
+    println(stats,winStats)
+    Try(wonOutput(userWon(userGuess)))
+    match {
+      case Success(s) => None
+      case Failure(f) =>
+        println(f, "Application Restarting")
+        run
     }
     if (playAgain) {
-      RockPaperScissors
-    }
+      run
+    } else (println(stats,winStats))
   }
 
   def playAgain: Boolean = {
@@ -54,11 +55,11 @@ class RockPaperScissors(playerName: String) {
     previousPlayerGuesses.addOne(user)
     user match {
       case RPSEnum.rock => if (ai == RPSEnum.scissors) RPSWinEnum.win
-        else if (ai == RPSEnum.rock) RPSWinEnum.draw else RPSWinEnum.loss
+      else if (ai == RPSEnum.rock) RPSWinEnum.draw else RPSWinEnum.loss
       case RPSEnum.paper => if (ai == RPSEnum.rock) RPSWinEnum.win
-        else if (ai == RPSEnum.paper) RPSWinEnum.draw else RPSWinEnum.loss
+      else if (ai == RPSEnum.paper) RPSWinEnum.draw else RPSWinEnum.loss
       case RPSEnum.scissors => if (ai == RPSEnum.paper) RPSWinEnum.win
-        else if (ai == RPSEnum.scissors) RPSWinEnum.draw else RPSWinEnum.loss
+      else if (ai == RPSEnum.scissors) RPSWinEnum.draw else RPSWinEnum.loss
       case _ => throw new IllegalStateException(s"${user.toString}")
     }
   }
@@ -84,9 +85,13 @@ class RockPaperScissors(playerName: String) {
 
   def winStats = {
 
-    val stats :Double =userStats.count(stat => stat == RPSWinEnum.win) /
-         (userStats.count(stat => stat == RPSWinEnum.loss || stat == RPSWinEnum.win ).toDouble)
-   stats
+    Try(BigDecimal(userStats.count(stat => stat == RPSWinEnum.win) /
+      (userStats.count(stat => stat == RPSWinEnum.loss || stat == RPSWinEnum.win).toDouble))
+      .setScale(2, BigDecimal.RoundingMode.HALF_UP).toDouble)
+    match {
+      case Success(value) => value
+      case Failure(f) => 0.00
+    }
   }
 
 
