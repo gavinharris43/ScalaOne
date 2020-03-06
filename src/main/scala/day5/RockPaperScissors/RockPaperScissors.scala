@@ -8,11 +8,12 @@ import scala.io.StdIn
 import scala.util.Random
 
 class RockPaperScissors(playerName: String) {
-  val name = playerName
+  val name = playerName.toUpperCase
   val previousPlayerGuesses = ArrayBuffer[RPSEnum]()
   val userStats = ArrayBuffer[RPSWinEnum]()
 
   def RockPaperScissors: Unit = {
+    println(s"$name Your Win Percentage is $winStats")
     try {
       wonOutput(userWon(userGuess))
     } catch {
@@ -47,8 +48,13 @@ class RockPaperScissors(playerName: String) {
     }
   }
 
-  def userInput = {
-    StdIn.readLine().toUpperCase.charAt(0)
+  def userInput: Char = {
+    try {
+      StdIn.readLine().toUpperCase().charAt(0)
+    }catch{
+      case e: StringIndexOutOfBoundsException => println("invalid input try again")
+        userInput
+    }
   }
 
   def userWon(user: RPSEnum) = {
@@ -84,9 +90,11 @@ class RockPaperScissors(playerName: String) {
     }
   }
 
-  def winStats: Double = {
-    userStats.count(stat => stat == RPSWinEnum.win) *
-      (userStats.count(stat => stat == RPSWinEnum.win || stat == RPSWinEnum.loss) / 100)
+  def winStats = {
+
+    val stats :Double =userStats.count(stat => stat == RPSWinEnum.win) /
+         (userStats.count(stat => stat == RPSWinEnum.loss || stat == RPSWinEnum.win ).toDouble)
+   stats
   }
 
 
