@@ -29,16 +29,19 @@ object day2Problem extends App {
         } else {
           wordGuess = wordGuess.updated(word.indexOf(input), input)
           var lastArray = findNext(word, input)
-          while (lastArray != -1) {
-            wordGuess = wordGuess.updated(lastArray, input)
-            lastArray = word.indexOf(lastArray + 1)
-          }
+          findOtherLettersInWord
           println(wordGuess)
           println("correct")
           if (areWinner(wordGuess)) {
             println(s"Lives Left: $lives")
             println("You Have Won Congratulations!!! \n You have not been sentenced to death my hanging.")
             lives = -1
+          }
+          def findOtherLettersInWord = {
+            while (lastArray != -1) {
+              wordGuess = wordGuess.updated(lastArray, input)
+              lastArray = word.indexOf(lastArray + 1)
+            }
           }
         }
       }
