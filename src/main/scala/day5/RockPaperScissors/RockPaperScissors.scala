@@ -2,13 +2,13 @@ package day5.RockPaperScissors
 
 import day5.RockPaperScissors.RPSEnum.RPSEnum
 import day5.RockPaperScissors.RPSWinEnum.RPSWinEnum
-import day5.RockPaperScissors.UserInput.userInputChar
 import scala.util.{Try, Success, Failure, Random}
 
 
 import scala.collection.mutable.ArrayBuffer
 
 class RockPaperScissors(playerName: String) {
+  val userInput = new UserInput
   val name = playerName.toUpperCase
   val previousPlayerGuesses = ArrayBuffer[RPSEnum]()
   val userStats = ArrayBuffer[RPSWinEnum]()
@@ -30,7 +30,7 @@ class RockPaperScissors(playerName: String) {
 
   def playAgain: Boolean = {
     println("Play Again Y/N")
-    val input = userInputChar
+    val input = userInput.userInputChar
     input match {
       case 'Y' => true
       case 'N' => false
@@ -40,7 +40,7 @@ class RockPaperScissors(playerName: String) {
 
   def userGuess: RPSEnum = {
     println("Rock, Paper, Scissors?")
-    val input = userInputChar
+    val input = userInput.userInputChar
     input match {
       case 'R' => RPSEnum.rock
       case 'P' => RPSEnum.paper

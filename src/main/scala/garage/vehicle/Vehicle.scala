@@ -1,6 +1,7 @@
 package garage.vehicle
 
 import garage.person.Person
+import scala.language.postfixOps
 
 abstract class Vehicle(plateNo: String, vehicleOwner: Person) {
 

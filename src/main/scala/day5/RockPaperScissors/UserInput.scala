@@ -3,7 +3,7 @@ package day5.RockPaperScissors
 import scala.io.StdIn
 import scala.util.{Try, Success, Failure}
 
-object UserInput {
+class UserInput {
 
   val errorMsg = "Invalid Input, Try Again"
 

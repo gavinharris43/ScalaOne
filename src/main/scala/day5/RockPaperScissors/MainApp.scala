@@ -1,12 +1,12 @@
 package day5.RockPaperScissors
 
-import day5.RockPaperScissors.UserInput._
 
 
 object MainApp extends App {
 
   println("Enter Name")
-  val rockPaperScissors = new RockPaperScissors(userInputString)
+  val userInput = new UserInput
+  val rockPaperScissors = new RockPaperScissors(userInput.userInputString)
 
   rockPaperScissors.run
 
